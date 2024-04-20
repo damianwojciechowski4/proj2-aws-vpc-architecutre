@@ -25,12 +25,11 @@ MyIGW
 ### Attach IGW to VPC
 MyIGW -> whole VPC
 
-## Configure NAT Gateway
-MyNAT_GW
-
 ## Configure Public-RT with default gateway that points to Internet Gateway
 
 
+## Configure NAT Gateway
+MyNAT_GW
 
 
 ## NAT Gateway

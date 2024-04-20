@@ -11,10 +11,19 @@ variable "private_subnet_cidrs"{
 }
 
 
+
+variable "public_subnet_cidr_map" {
+  type    = map(string)
+  default = { "eu-central-1a" = "10.100.100.0/24", "eu-central-1b" = "10.100.1.0/24" }
+}
+
 variable "private_subnet_cidr_map" {
   type    = map(string)
-  default = { "eu-central-1a" = "10.100.100.0/24", "eu-central-1b" = "10.100.101.0/24" }
+  default = { "eu-central-1a" = "10.100.0.0/24", "eu-central-1b" = "10.100.101.0/24" }
 }
+
+
+
 
 variable "azs"{
     type = list(string)
