@@ -1,4 +1,4 @@
-putput "vpc_id" {
+output "vpc_id" {
     value = aws_vpc.main
 }
 output "public_subnets" {
