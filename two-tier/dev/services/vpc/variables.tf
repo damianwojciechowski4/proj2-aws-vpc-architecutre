@@ -9,9 +9,3 @@ variable "backend_dynamodb_table" {
 }
 
 
-variable "vpc_id" {
-    type = string
-}
-
-
-
