@@ -19,7 +19,6 @@ resource "aws_route" "Private-RT-to-NATGW" {
     nat_gateway_id = aws_nat_gateway.natgw_2tier.id
 }
 
-
 resource "aws_route_table" "Public-RT" {
     vpc_id = aws_vpc.main.id
 
@@ -39,15 +38,3 @@ resource "aws_route_table_association" "Public-RT-Association"{
     subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
     route_table_id = aws_route_table.Public-RT.id
 }
-
-
-output "Private-RT-ID" {
-    value = aws_route_table.Private-RT.id
-}
-
-
-output "Public-RT-ID" {
-    value = aws_route_table.Public-RT.id
-}
-
-

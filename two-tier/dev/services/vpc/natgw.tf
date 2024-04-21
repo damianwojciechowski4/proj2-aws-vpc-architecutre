@@ -18,6 +18,3 @@ resource "aws_eip" "nat_eip_2tier" {
 }
 
 
-output "nat_gateway_id" {
-    value = aws_nat_gateway.natgw_2tier.id
-}
