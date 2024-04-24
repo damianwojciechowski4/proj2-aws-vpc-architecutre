@@ -48,7 +48,7 @@ resource "aws_key_pair" "test_key" {
 }
 
 resource "aws_security_group" "public_sg" {
-  name = "new-terraform-public_sg"
+  name = "security-group-eu-central1-dev-public"
   vpc_id = var.vpc_id
   ingress {
     from_port = 22
@@ -60,7 +60,7 @@ resource "aws_security_group" "public_sg" {
 
 
 resource "aws_security_group" "private_sg" {
-  name = "new-terraform-private_sg"
+  name = "security-group-eu-central1-dev-private"
   vpc_id = var.vpc_id
     ingress {
       from_port = 22
@@ -71,6 +71,7 @@ resource "aws_security_group" "private_sg" {
 }
 
 resource "aws_instance" "public" {
+  name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-public"
   ami = "ami-04dfd853d88e818e8"
   instance_type = "t2.micro"
   subnet_id = values(data.aws_subnet.public)[0].id
@@ -84,6 +85,7 @@ resource "aws_instance" "public" {
 }
 
 resource "aws_instance" "private" {
+  name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-private"
   ami = "ami-04dfd853d88e818e8"
   instance_type = "t2.micro"
   subnet_id = values(data.aws_subnet.private)[0].id
