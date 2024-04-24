@@ -9,7 +9,7 @@ data "aws_subnets" "public" {
   }
 
   tags = {
-    Name = "Public subnet*"
+    Name = "*public-dev"
   }
 }
 
@@ -27,7 +27,7 @@ data "aws_subnets" "private" {
   }
 
   tags = {
-    Name = "Private subnet*"
+    Name = "*private-dev"
   }
 }
 
@@ -43,8 +43,8 @@ data "aws_availability_zones" "available" {
 
 #Create key apir for EC2 instance
 resource "aws_key_pair" "test_key" {
-  key_name   = "test_key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqijjKW0GCpgp1zzFlPeWi5R+LUJ8wiKxLTd+dkV+eoROEplWHCmnVOo8u8rpyQQFUn7dg7Tsz5YaHRCeKCAEeFFZsX/siOirp8/ujm+TWCfgfEXcveKIVBtZeKvvYca+gGhIBK3cfg6hPnY+TN2RWp+g1stSnY5PnEVy9LFScyLaaLV6s7WdxWlzaEG43EEyND8C+EysxF/sT1FmHL4ILxRzxcVIBqoiGmR3GCBvynvPHuYdp4sCvXLwXOqSMtYaTEWDn3j8Jov2EdUw3tJxuEJ7mLnJ0jCq6dRCfxyOtxDrPP2UpAF6mYn25lHBBghR31x8BrIgBWW6IVS0tLvORQ=="
+  key_name   = "ec2_pubkey-vpc-dev"
+  public_key = file ("../../../../../PuttyKeys/proj2-vpc/ec2-vpc-proj2.pub")
 }
 
 resource "aws_security_group" "public_sg" {
@@ -71,7 +71,6 @@ resource "aws_security_group" "private_sg" {
 }
 
 resource "aws_instance" "public" {
-  name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-public"
   ami = "ami-04dfd853d88e818e8"
   instance_type = "t2.micro"
   subnet_id = values(data.aws_subnet.public)[0].id
@@ -80,19 +79,18 @@ resource "aws_instance" "public" {
   key_name = aws_key_pair.test_key.key_name
   
   tags = {
-      Name = "Public Instance ${data.aws_availability_zones.available.names[0]}"
+      Name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-public"
       }
 }
 
 resource "aws_instance" "private" {
-  name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-private"
   ami = "ami-04dfd853d88e818e8"
   instance_type = "t2.micro"
   subnet_id = values(data.aws_subnet.private)[0].id
   vpc_security_group_ids =[aws_security_group.private_sg.id]
   key_name = aws_key_pair.test_key.key_name
   tags = {
-    Name = "Private Instance ${data.aws_availability_zones.available.names[0]}"
+    Name = "ec2-eu-central1-${data.aws_availability_zones.available.names[0]}-dev-private"
 }
 }
 
