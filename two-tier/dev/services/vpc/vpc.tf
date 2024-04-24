@@ -18,7 +18,7 @@ resource "aws_subnet" "public_subnets"{
 
 
 tags = {
-        Name = "subnet-eu-central-${var.azs[count.index]}-public-dev"
+        Name = "subnet-${var.azs[count.index]}-public-dev"
         AZ = var.azs[count.index]
     }
     
@@ -31,7 +31,7 @@ resource "aws_subnet" "private_subnets"{
     vpc_id = aws_vpc.main.id
 
 tags = {
-        Name = "subnet-eu-central-${var.azs[count.index]}-private-dev"
+        Name = "subnet-${var.azs[count.index]}-private-dev"
         AZ = var.azs[count.index]
     }
     

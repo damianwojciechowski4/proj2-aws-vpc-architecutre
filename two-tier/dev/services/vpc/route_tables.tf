@@ -2,7 +2,7 @@ resource "aws_route_table" "Private-RT" {
     vpc_id = aws_vpc.main.id
 
     tags = {
-        Name = "Private Route Table"
+        Name = "private-rt-eu-central1-dev"
     }
     
 }
@@ -28,7 +28,7 @@ resource "aws_route_table" "Public-RT" {
     }
 
     tags = {
-        Name = "Public Route Table"
+        Name = "public-rt-eu-central1-dev"
     }
     
 }
