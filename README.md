@@ -53,4 +53,4 @@ security-group-eu-central1-dev-public
 <sup>dig +short myip.opendns.com @resolver1.opendns.com</sup>
 
 [ec2-user@ip-10-100-100-51 ~]$  dig +short myip.opendns.com @resolver1.opendns.com
-<sup>18.197.240.14</sup>
+<sub>18.197.240.14</sub>
