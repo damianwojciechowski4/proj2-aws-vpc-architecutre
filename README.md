@@ -21,7 +21,7 @@
 
 ## Create Route table for private subnets
 - private-rt-eu-central1-dev
-Associate subnets to the route table
+### Associate subnets to the route table
 - private-subnet-1a
 - private-subnet-1b
 
