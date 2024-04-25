@@ -64,8 +64,6 @@ Create Security Group for Apps
 # VPC Peering
 VPC Prod 10.200.0.0/16
 
-- Owner ID: 058264462678
-- VPC ID: vpc-061fa8346c1672bf3
 ## Create Peering Connections
 ## Create Endpoint
 - interface endpoint
