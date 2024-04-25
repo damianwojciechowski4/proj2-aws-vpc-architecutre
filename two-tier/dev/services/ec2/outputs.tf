@@ -15,7 +15,7 @@ output "public_ip" {
 }
 
 
-output "public_ip" {
+output "private_ip" {
     value = aws_instance.private.private_ip
     description = "The private IP address of EC2 instance"
 }
