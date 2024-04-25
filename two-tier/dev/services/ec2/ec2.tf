@@ -97,7 +97,7 @@ resource "aws_instance" "public" {
 resource "aws_instance" "private" {
   ami = "ami-0f673487d7e5f89ca"
   instance_type = "t2.micro"
-  subnet_id = values(data.aws_subnet.private)[1].id
+  subnet_id = values(data.aws_subnet.private)[0].id
   vpc_security_group_ids =[aws_security_group.private_sg.id]
   key_name = aws_key_pair.test_key.key_name
   tags = {
