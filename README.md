@@ -1,4 +1,4 @@
-# proj2-aws-vpc-architecutre
+![image](https://github.com/damianwojciechowski4/proj2-aws-vpc-architecutre/assets/110458027/4ae59f29-e698-440f-aca3-7a283cb6fd8c)# proj2-aws-vpc-architecutre
 
 # Terraform resources used
 - aws_vpc 
@@ -11,8 +11,8 @@
 - aws_eip
 
 # AWS VPC deployment IaC configures below components
-## 4 VPCs
-### Subnets
+## 1 VPC - 10.100.0.0/16
+### 4 Subnets within VPC
 - public-subnet-1a 10.100.0.0/24
 - public-subnet-1b 10.100.1.0/24
 - private-subnet-1a 10.100.100.0/24
@@ -20,57 +20,39 @@
 
 
 ## Create Route table for private subnets
-Private-RT
+- private-rt-eu-central1-dev
 Associate subnets to the route table
 - private-subnet-1a
 - private-subnet-1b
 
 ## Name MAIN route table as:
-Public-RT
+- public-rt-eu-central1-dev
 
 ## Internet Gateway
-### Create Internet Gateway
-MyIGW
+igw-eu-central-1-dev
 ### Attach IGW to VPC
-MyIGW -> whole VPC
+igw-eu-central-1-dev -> whole VPC
 
 ## Configure Public-RT with default gateway that points to Internet Gateway
 
-
 ## Configure NAT Gateway
-MyNAT_GW
+nat-gw-eu-central-1a-dev
 
 ## NAT Gateway
 ### Configure NAT Gateway
-- attach NAT Gateway to public subnet in 1a
+- attach NAT Gateway nat-gw-eu-central-1a-dev to public subnet in AZ eu-central-1a
 - configure default route 0.0.0.0/0 in Private-RT that points to NAT Gateway
 
-## Create security group for public web access
+## Create security group for public access
+- allow access to public Bastion server on port TCP_22 [SSH]
+
+## Create security group for private access
+- allow access from Bastion server to private server on port TCP_22[SSH] that is directed from
+security-group-eu-central1-dev-public 
 
 
+#### Check your public IP on Private 1a instance
+<sup>dig +short myip.opendns.com @resolver1.opendns.com</sup>
 
-#### Check your public IP on Private 1B instance
-<sub>dig +short myip.opendns.com @resolver1.opendns.com</sup>
-
-- [ec2-user@ip-10-100-101-39 ~]$ dig +short myip.opendns.com @resolver1.opendns.com
- **3.72.195.120**
-
-
-### Create Private Security Group
-Create Security Group for Apps
-
-
-
-# VPC Peering
-VPC Prod 10.200.0.0/16
-
-## Create Peering Connections
-## Create Endpoint
-- interface endpoint
-- gateway endpoint
-
-
-## SSL VPN
-AWS Client VPN
-
-## Site-to-Site VPN
+[ec2-user@ip-10-100-100-51 ~]$  dig +short myip.opendns.com @resolver1.opendns.com
+<sup>18.197.240.14</sup>
