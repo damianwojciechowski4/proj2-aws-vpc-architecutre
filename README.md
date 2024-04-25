@@ -1,4 +1,5 @@
 # proj2-aws-vpc-architecutre
+![2tier](https://github.com/damianwojciechowski4/proj2-aws-vpc-architecutre/assets/110458027/4e0eb06b-ab86-4b92-b7e8-838ba1874685)
 
 # Terraform resources used
 - aws_vpc 
