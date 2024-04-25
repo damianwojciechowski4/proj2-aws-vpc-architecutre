@@ -37,9 +37,6 @@ igw-eu-central-1-dev -> whole VPC
 
 ## Configure NAT Gateway
 nat-gw-eu-central-1a-dev
-
-## NAT Gateway
-### Configure NAT Gateway
 - attach NAT Gateway nat-gw-eu-central-1a-dev to public subnet in AZ eu-central-1a
 - configure default route 0.0.0.0/0 in Private-RT that points to NAT Gateway
 
